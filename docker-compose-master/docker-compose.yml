@@ -1,0 +1,19 @@
+version: "3"
+services:
+  postgres:
+    container_name: postgres_host
+    image: postgres:15
+    # restart: always
+    environment:
+      POSTGRES_DB: tutorial
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "!@#"
+    ports:
+      - 5432:5432
+
+  docker_tutorial:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
